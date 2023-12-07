@@ -3,6 +3,7 @@ import { createContext } from "react";
 type IUser = {
   name: string;
   email: string;
+  token: string | null;
 };
 
 type IUserContext = {
@@ -10,6 +11,9 @@ type IUserContext = {
   setUser: (userData: IUser) => void;
 };
 
-const UserContext = createContext<IUserContext>({ user: null, setUser: () => {}});
+const UserContext = createContext<IUserContext>({
+  user: null,
+  setUser: () => {},
+});
 
 export default UserContext;

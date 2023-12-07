@@ -1,4 +1,4 @@
-import { Flex, Heading } from "native-base";
+import { Flex, Heading, Text } from "native-base";
 import { useContext, useState, useEffect } from "react";
 import UserContext from "../../context/user";
 import { FlatList, Alert } from "react-native";
