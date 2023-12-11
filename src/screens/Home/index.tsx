@@ -7,6 +7,7 @@ import Selected from "../../components/Selected";
 export default function Home() {
   const userData = useContext(UserContext);
   const [selectedAlbum, setSelectedAlbum] = useState("");
+  const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
     if (selectedAlbum == "Iron maden") {
@@ -26,7 +27,7 @@ export default function Home() {
         Helcome back {userData.user.name}
       </Heading>
       <FlatList
-        data={DATA}
+        data={albums}
         renderItem={({ item }) => (
           <Card
             key={item.id}
