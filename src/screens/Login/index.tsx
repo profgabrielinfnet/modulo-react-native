@@ -8,12 +8,12 @@ import axios from "axios";
 export default function Login() {
   const userData = useContext(UserContext);
 
-  userData.user?.token
+  userData.user?.token;
 
   const handleLogin = () => {
     console.log("chamou");
     axios
-      .post("http://10.0.2.2:3000/user/login", {
+      .post("https://musicapi-w7kn.onrender.com/user/login", {
         username: "gabriel",
         password: "1234",
       })
@@ -21,7 +21,7 @@ export default function Login() {
         userData.setUser({
           name: "Gabriel",
           email: "gabrielgs1408@gmail.com",
-          token: response.data.token
+          token: response.data.token,
         });
       })
       .catch(function (error) {
