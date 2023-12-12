@@ -1,22 +1,21 @@
 import { Flex, Heading, Input } from "native-base";
 import { Alert } from "react-native";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Button from "../../components/Button";
 import UserContext from "../../context/user";
-import axios from "axios";
+import { login } from "../../services/auth";
 
 export default function Login() {
   const userData = useContext(UserContext);
 
   userData.user?.token;
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleLogin = () => {
-    console.log("chamou");
-    axios
-      .post("https://musicapi-w7kn.onrender.com/user/login", {
-        username: "gabriel",
-        password: "1234",
-      })
+    login({
+      username: username,
+      password: password,
+    })
       .then(function (response) {
         userData.setUser({
           name: "Gabriel",
@@ -33,8 +32,8 @@ export default function Login() {
   return (
     <Flex p={5} flex={1} justifyContent="center" alignItems="center">
       <Heading>Tela de login</Heading>
-      <Input mt={2} />
-      <Input mt={2} />
+      <Input mt={2} onChangeText={(value) => setUsername(value)} />
+      <Input mt={2} onChangeText={(value) => setPassword(value)} />
       <Flex width="100%">
         <Button content="Sign in" handleClick={handleLogin} />
       </Flex>

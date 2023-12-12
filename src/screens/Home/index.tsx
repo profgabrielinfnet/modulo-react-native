@@ -4,6 +4,7 @@ import UserContext from "../../context/user";
 import { FlatList, Alert } from "react-native";
 import Card from "../../components/Card";
 import Selected from "../../components/Selected";
+import { getAlbums } from "../../services/albums";
 export default function Home() {
   const userData = useContext(UserContext);
   const [selectedAlbum, setSelectedAlbum] = useState("");
@@ -15,6 +16,12 @@ export default function Home() {
     }
   }, [selectedAlbum]);
 
+  useEffect(() => {
+    getAlbums(userData.user?.token)
+      .then((response) => setAlbums(response.data))
+      .catch((e) => console.log("erro", e));
+  }, []);
+
   return (
     <Flex
       flex={1}
@@ -24,7 +31,7 @@ export default function Home() {
       bg="primary.100"
     >
       <Heading color="secondary.100" fontSize="4xl">
-        Helcome back {userData.user.name}
+        Wellcome back {userData.user.name}
       </Heading>
       <FlatList
         data={albums}
