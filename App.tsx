@@ -4,6 +4,7 @@ import THEME from "./src/theme";
 import UserContext, { IUser } from "./src/context/user";
 import Wrapper from "./src/screens/Wrapper";
 import { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
 import { MMKV } from "react-native-mmkv";
 
@@ -32,7 +33,9 @@ export default function App() {
     <NativeBaseProvider theme={THEME}>
       <UserContext.Provider value={{ user: user, setUser }}>
         <StatusBar style="auto" />
-        <Wrapper />
+        <NavigationContainer>
+          <Wrapper />
+        </NavigationContainer>
       </UserContext.Provider>
     </NativeBaseProvider>
   );
